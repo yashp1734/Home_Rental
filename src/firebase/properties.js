@@ -33,7 +33,7 @@ export const uploadProperty = async (propertyData, userId, userEmail) => {
             bedrooms: propertyData.bedrooms,
             bathrooms: propertyData.bathrooms,
             amenities: propertyData.amenities.split(',').map(item => item.trim()).filter(item => item),
-            images: validImages.slice(0, 4), // Ensure max 4 images
+            images: validImages.slice(0, 4),
             ownerId: userId,
             ownerEmail: userEmail,
             createdAt: new Date().toISOString(),
@@ -55,7 +55,6 @@ export const getProperties = async () => {
             return Object.entries(snapshot.val()).map(([id, data]) => ({
                 id,
                 ...data,
-                // Ensure images array exists
                 images: data.images || []
             }));
         }
@@ -168,17 +167,14 @@ export const addToFavorites = async (propertyId, userId) => {
         const updatedData = {
             ...existingProperty,
             ...updates,
-            // Ensure these fields are properly formatted
             amenities: Array.isArray(updates.amenities) 
                 ? updates.amenities 
                 : (updates.amenities || '').split(',').map(item => item.trim()).filter(item => item),
             monthlyRent: Number(updates.monthlyRent) || 0,
             bedrooms: Number(updates.bedrooms) || 1,
             bathrooms: Number(updates.bathrooms) || 1,
-            // Don't overwrite these fields if not provided in updates
             ownerId: updates.ownerId || existingProperty.ownerId,
             ownerEmail: updates.ownerEmail || existingProperty.ownerEmail,
-            // Update the timestamp
             updatedAt: new Date().toISOString()
         };
 
@@ -193,7 +189,6 @@ export const addToFavorites = async (propertyId, userId) => {
                 typeof img === 'string' && (img.startsWith('data:image') || img.startsWith('http'))
             );
         } else {
-            // Ensure images array exists
             updatedData.images = existingProperty.images || [];
         }
 

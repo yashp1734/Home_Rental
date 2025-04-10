@@ -540,7 +540,6 @@ const Home = () => {
                                         </div>
                                     </div>
 
-                                    {/* Quick Facts */}
                                     <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-6 py-4 border-t border-b border-gray-200">
                                         <div className="flex items-center">
                                             <FiHome className="text-gray-500 mr-2" />

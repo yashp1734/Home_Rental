@@ -143,10 +143,9 @@ const EditProperty = () => {
                 bedrooms: Number(propertyData.bedrooms),
                 bathrooms: Number(propertyData.bathrooms),
                 amenities: propertyData.amenities.split(',').map(item => item.trim()).filter(item => item),
-                // Keep existing owner data
                 ownerId: currentUser.uid,
                 ownerEmail: currentUser.email,
-                createdAt: new Date().toISOString(), // Update timestamp
+                createdAt: new Date().toISOString(),
                 isAvailable: true
             });
             navigate('/my-listings');
